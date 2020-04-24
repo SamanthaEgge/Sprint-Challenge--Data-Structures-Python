@@ -17,7 +17,7 @@ class RingBuffer:
     print('in append')
     print('item')
     print(item)
-    print(self.capacity)
+    # print(self.capacity)
     if self.storage.length < self.capacity:
       self.storage.add_to_head(item)
       print(self.storage.length)
@@ -38,9 +38,9 @@ class RingBuffer:
     list_buffer_contents = []
 
     # Start at tail, and grab the last elements based upon storage
-    count = 1
+    count = 0
     current = self.storage.tail
-    while count < self.capacity:
+    while count < self.capacity and current is not None:
       list_buffer_contents.append(current.value)
       current = current.prev
       count +=1
