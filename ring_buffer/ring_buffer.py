@@ -14,14 +14,20 @@ class RingBuffer:
   def append(self, item):
     # Need to maintain a DLL of the length of the capacity
     # Continue adding to DLL until it matches capacity.
+    print('in append')
+    print('item')
+    print(item)
+    print(self.capacity)
     if self.storage.length < self.capacity:
       self.storage.add_to_head(item)
+      print(self.storage.length)
       # first pass a
       # second pass a, b
       # 3rd a, b, c
       # etc, etc. Adding nodes to end end of list ensures order is kept.
     # Once limit is reached. the oldest node (the head), must be removed, and another added to the tail
     else:
+      print('???')
       self.storage.remove_from_tail()
       self.storage.add_to_head(item)
 
