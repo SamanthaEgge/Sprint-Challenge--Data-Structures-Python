@@ -53,15 +53,14 @@ class RingBuffer:
     else:
       if self.index > 0:
         node_placement = self.getNth(self.storage.tail, self.index)
-        print('node value')
-        print(node_placement.value)
+        # print('node value')
+        # print(node_placement.value)
         node_placement.value = item
-        # node_placement.insert_before(item)
         self.index = self.index-1
-        print('else')
-        print(self.index)
+        # print('else')
+        # print(self.index)
       else: 
-        print('resetting index')
+        # print('resetting index')
         self.index = self.capacity-1
         self.storage.remove_from_head()
         self.storage.add_to_head(item)
@@ -82,20 +81,31 @@ class RingBuffer:
       count +=1
     return list_buffer_contents
 
-### Next steps. Have an index that compares max capacity vs, which index the oldest or newest item is on. Use that to determine where to delete items within the dll
-### then, this should work?
-
-
-
 # ----------------Stretch Goal-------------------
 
 
-# class ArrayRingBuffer:
-#   def __init__(self, capacity):
-#     pass
+class ArrayRingBuffer:
+  def __init__(self, capacity):
+    self.capacity = capacity-1
+    self.storage = []
+    self.index = 0
 
-#   def append(self, item):
-#     pass
+  def append(self, item):
+    if len(self.storage) <= self.capacity+1:
+      #Building out initial array to capacity
+      self.storage.append(item)
+      self.index = self.index+1
+    elif self.index <= self.capacity:
+      # Moving down through the array once it's filled
+      self.storage[self.index] = item
+      self.index = self.index+1
+    else:
+      ## Resetting index to beginning
+      self.index = 0
+      self.storage[self.index] = item
 
-#   def get(self):
-#     pass
+      ### a, b, c, d, e
+      ### 0, 1, 2, 3, 4
+
+  def get(self):
+    pass
