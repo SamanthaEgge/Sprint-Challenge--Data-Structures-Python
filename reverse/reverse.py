@@ -52,13 +52,16 @@ class LinkedList:
       return node 
     # exit case when list has 1 element, already sorted
     if node.next_node == None:
-      return node
+      node.set_next(prev)
+      self.head = node
+      return
     # print(node.value, node.next_node.value, node.next_node.next_node.value)
     ### this print proves we're moving through the list properly
     # grabbing next node to pass before it gets changed
     temp = node.next_node #first pass will be 4
     # setting current node to point backwards
     node.set_next(prev) # first pass will point 5 -> None
+    # self.head = node
     # setting future previous node, to be the next node off of temp
     prev = node
     print('checking new next_node getting placed correctly')
@@ -68,6 +71,9 @@ class LinkedList:
     node = temp
     print(node.value)
     self.reverse_list(node, prev)
+
+    ### the next_node is changing, but not the head of the list
+    ##?????????
 
 # None -> 5 -> 4 -> 3 -> 2 -> 1
     # 5, None
