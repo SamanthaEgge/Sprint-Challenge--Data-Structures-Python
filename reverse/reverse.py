@@ -47,15 +47,24 @@ class LinkedList:
     return False
 
   def reverse_list(self, node, prev):
+    # exit case when list has no elements
     if node == None: 
       return node 
+    # exit case when list has 1 element, already sorted
     if node.next_node == None:
       self.head = node
       return node
     print('first pass')
-    print(node, prev)
-    self.reverse_list(node.next_node, node)
-    prev.set_next(node)
-    node.set_next(None)
-    print('second pass')
-    print(node, prev)
+    print(node, node.next_node, node.next_node.next_node)
+    # grabbing next node to pass before it gets changed
+    temp = node.next_node
+    # setting current node to point backwards
+    node.set_next(prev)
+    # setting future previous node, to be the next node off of temp
+    prev = temp
+    self.reverse_list(node, prev)
+
+# None -> 1 -> 2 -> 3 -> 4 -> 5
+    # 1, None
+    # None < - 1 -> 2 -> 3 -> 4 -> 5
+# 
