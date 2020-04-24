@@ -52,19 +52,20 @@ class LinkedList:
       return node 
     # exit case when list has 1 element, already sorted
     if node.next_node == None:
-      self.head = node
       return node
     print('first pass')
     print(node, node.next_node, node.next_node.next_node)
     # grabbing next node to pass before it gets changed
-    temp = node.next_node
+    temp = node.next_node #first pass will be 4
     # setting current node to point backwards
-    node.set_next(prev)
+    node.set_next(prev) # first pass will point 5 -> None
     # setting future previous node, to be the next node off of temp
-    prev = temp
+    node = temp
+    prev = node
     self.reverse_list(node, prev)
 
-# None -> 1 -> 2 -> 3 -> 4 -> 5
-    # 1, None
-    # None < - 1 -> 2 -> 3 -> 4 -> 5
-# 
+# None -> 5 -> 4 -> 3 -> 2 -> 1
+    # 5, None
+    # None < - 5 -> 4 -> 3 -> 2 -> 1
+# 4, 5
+  #None <- 5 <- 4 -> 3 -> 2 -> 1
