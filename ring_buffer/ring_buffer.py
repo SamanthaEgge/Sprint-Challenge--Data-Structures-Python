@@ -14,9 +14,9 @@ class RingBuffer:
   def getNth(self, tail_node, index): 
     current = tail_node # Initialise temp 
     count = self.capacity-1 # Index of current node 
-    print('index in getNth')
-    print(index)
-    print(count)
+    # print('index in getNth')
+    # print(index)
+    # print(count)
     # Loop while end of linked list is not reached 
     while (current): 
         if (count == index): 
@@ -42,7 +42,7 @@ class RingBuffer:
     # print(self.capacity)
     if self.storage.length < self.capacity:
       self.storage.add_to_head(item)
-      print(self.storage.length)
+      # print(self.storage.length)
       # first pass a
       # second pass a, b
       # 3rd a, b, c
@@ -86,26 +86,40 @@ class RingBuffer:
 
 class ArrayRingBuffer:
   def __init__(self, capacity):
-    self.capacity = capacity-1
+    self.capacity = capacity
     self.storage = []
     self.index = 0
 
   def append(self, item):
-    if len(self.storage) <= self.capacity+1:
+    print('index in append')
+    print(self.index)
+    if len(self.storage) < self.capacity:
       #Building out initial array to capacity
+      print('building the list')
+      # print(item)
       self.storage.append(item)
       self.index = self.index+1
-    elif self.index <= self.capacity:
+    elif self.index < self.capacity:
       # Moving down through the array once it's filled
+      print('while not at the end')
+      print(self.storage[self.index])
+      # print(item)
       self.storage[self.index] = item
       self.index = self.index+1
     else:
       ## Resetting index to beginning
+      print('resetting index')
+      # print(item)
       self.index = 0
+      print(self.storage[self.index])
       self.storage[self.index] = item
+      self.index = self.index+1
 
-      ### a, b, c, d, e
       ### 0, 1, 2, 3, 4
+      ### a, b, c, d, e
+      ### f, b, c, d, e
+      ### f, g, h, i, e
+      
 
   def get(self):
-    pass
+    return self.storage
